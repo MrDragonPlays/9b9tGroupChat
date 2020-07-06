@@ -20,7 +20,7 @@ public class PlayerManager {
     }
 
     public OPlayer getPlayer(UUID uniqueId) {
-        if (!players.contains(uniqueId)) loadPlayer(uniqueId);
+        if (!players.containsKey(uniqueId)) loadPlayer(uniqueId);
         return players.getOrDefault(uniqueId, null);
     }
 
@@ -28,8 +28,8 @@ public class PlayerManager {
         return getPlayer(player.getUniqueId());
     }
 
-    public void loadPlayer(UUID uniqueId) {
-        players.put(uniqueId, plugin.databaseManager.getPlayer(uniqueId));
+    public OPlayer loadPlayer(UUID uniqueId) {
+        return players.put(uniqueId, plugin.databaseManager.getPlayer(uniqueId));
     }
 
     public void loadPlayer(Player player) {

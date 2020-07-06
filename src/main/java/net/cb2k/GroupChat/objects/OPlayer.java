@@ -51,15 +51,11 @@ public class OPlayer {
 
     public void setGroup(Group group) {
         this.group = group;
-        this.role = group.getRole(this.uniqueId);
+        if (this.role != null) this.role = group.getRole(this.uniqueId);
     }
 
     public GroupRole getRole() {
         return role;
-    }
-
-    public void setRole(GroupRole role) {
-        this.role = role;
     }
 
     public String getUsername() {
@@ -72,6 +68,17 @@ public class OPlayer {
 
     public Player getPlayer() {
         return Bukkit.getPlayer(uniqueId);
+    }
+
+    @Override public String toString() {
+        return "OPlayer{" +
+                "username='" + username + '\'' +
+                ", uniqueId=" + uniqueId +
+                ", talkingInGroupChat=" + talkingInGroupChat +
+                ", spyToggled=" + spyToggled +
+                ", role=" + role +
+                ", group=" + group +
+                '}';
     }
 
     @Override public boolean equals(Object o) {

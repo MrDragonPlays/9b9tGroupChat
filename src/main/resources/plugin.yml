@@ -1,0 +1,13 @@
+name: GroupChat
+version: ${project.version}
+main: net.cb2k.GroupChat.Main
+commands:
+  gcreate:
+    aliases: [gcreate, groupcreate]
+    description: Creates a group.
+  gleave:
+    aliases: [gleave, groupleave]
+    description: Leaves a group.
+  gtoggle:
+    aliases: [gtoggle, grouptoggle]
+    description: Leaves a group.

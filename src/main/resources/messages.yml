@@ -1,0 +1,8 @@
+error:
+  prefix: "&c&lGroupChats &8» "
+  not-a-player: "&fYou need to be a player to execute this command"
+  not-in-group: "&fYou need to be in a group to execute this command"
+  already-in-group: "&fYou can not be in a group while executing this command"
+  not-invited-to-group: "&fYou are not invited to {0}'s group"
+  not-enough-arguments: "&fYou do not have enough arguments"
+  not-enough-permissions: "&fYou do not have permissions to perform this action"

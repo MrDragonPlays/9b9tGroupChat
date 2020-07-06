@@ -1,0 +1,6 @@
+chat-formatting:
+  # 0 is senders username
+  # 1 is the message
+  # 2 is the groups owner
+  standard: "&2Group: &6{0}: &f{1}"
+  spy: "&b&lSPY &2{2}'s group: &6{0}: &f{1}"

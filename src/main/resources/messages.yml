@@ -6,3 +6,19 @@ error:
   not-invited-to-group: "&fYou are not invited to {0}'s group"
   not-enough-arguments: "&fYou do not have enough arguments"
   not-enough-permissions: "&fYou do not have permissions to perform this action"
+  invalid-player-argument: "&fCould not find this player"
+  player-not-in-group: "&fPlayer {0} is not in your group"
+  cannot-leave-own-group: "&fYou are not able to leave your own group"
+
+success:
+  prefix: "&a&lGroupChats &8» "
+  left-group: "&fYou left {0}'s group"
+  created-group: "&fYou created a group"
+  joined-group: "&fYou joined {0}'s group"
+  disbanded-group: "&fYou disbanded your group"
+  toggled-chat: "&f{1} group chat"
+  toggled-spy: "&f{1} group chat SPY"
+
+other:
+  prefix: "&b&lGroupChats &8» "
+  invited-to-group: "&fYou were invited to {0}'s group"

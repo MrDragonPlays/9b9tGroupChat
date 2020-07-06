@@ -1,13 +1,23 @@
 name: GroupChat
 version: ${project.version}
-main: net.cb2k.GroupChat.Main
+main: net.cb2k.GroupChat.GroupChat
+authors: [DeveloperDragon]
 commands:
   gcreate:
-    aliases: [gcreate, groupcreate]
     description: Creates a group.
   gleave:
-    aliases: [gleave, groupleave]
     description: Leaves a group.
-  gtoggle:
-    aliases: [gtoggle, grouptoggle]
-    description: Leaves a group.
+  gaccept:
+    description: Accept an invite.
+  gchat:
+    description: Toggle between chats
+  gdisband:
+    description: Disband your group.
+  gkick:
+    description: Kick a player from your group.
+  gmembers:
+    description: Show all members of your group
+  ginvite:
+    description: Invite new members to your group.
+  gspy:
+    description: Spy on other players

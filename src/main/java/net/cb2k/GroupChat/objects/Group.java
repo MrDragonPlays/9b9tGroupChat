@@ -56,8 +56,14 @@ public class Group {
 
     public Set<Player> getOnlineMembers(Player paramPlayer) {
         return getOnlineMembers().stream()
-                .filter(player -> paramPlayer.canSee(player)) // Remove vanished players
+                .filter(paramPlayer::canSee) // Remove vanished players
                 .collect(Collectors.toSet());
+    }
+
+    public Set<OfflinePlayer> getOfflineMembers(Player paramPlayer) {
+        Set<OfflinePlayer> output = new LinkedHashSet<>(members);
+        output.removeAll(getOnlineMembers(paramPlayer));
+        return output;
     }
 
     public boolean isInvited(UUID uniqueId) {
@@ -78,10 +84,6 @@ public class Group {
 
     public void addInvite(UUID uniqueId) {
         invites.add(Bukkit.getOfflinePlayer(uniqueId));
-    }
-
-    public void addInvite(Player player) {
-        addInvite(player.getUniqueId());
     }
 
     public void addPlayer(UUID uniqueId) {

@@ -30,7 +30,7 @@ public class GroupCreateCommand implements CommandExecutor {
 
         oPlayer.setGroup(newGroup);
 
-        return true;
+        return ChatUtil.sendConfigMessageRT(commandSender, "success.created-group");
     }
 
 }

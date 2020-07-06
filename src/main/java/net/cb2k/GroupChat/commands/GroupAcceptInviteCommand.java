@@ -37,7 +37,7 @@ public class GroupAcceptInviteCommand implements CommandExecutor {
         targetGroup.addPlayer(player); // Add player object to group
         oPlayer.setGroup(targetGroup); // Add group object to player
 
-        return true;
+        return ChatUtil.sendConfigMessageRT(player, "success.joined-group", targetGroup.getCreator());
     }
 
 }

@@ -1,22 +1,37 @@
 package net.cb2k.GroupChat.commands;
 
+import net.cb2k.GroupChat.GroupChat;
+import net.cb2k.GroupChat.objects.GroupRole;
+import net.cb2k.GroupChat.objects.OPlayer;
+import net.cb2k.GroupChat.util.ChatUtil;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 public class GroupLeaveCommand implements CommandExecutor {
 
-    @Override public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
+    private static final GroupChat plugin = GroupChat.getInstance();
 
-        // TODO Check if the player is in a group
+    @Override public boolean onCommand(CommandSender commandSender, Command command, String s, String[] args) {
 
-        // TODO Check if the player is the owner of the group
+        if (!(commandSender instanceof Player))
+            return ChatUtil.sendConfigMessageRT(commandSender, "error.not-a-player");
 
-        // TODO Remove player from the group object
+        Player player = (Player) commandSender;
+        OPlayer oPlayer = plugin.playerManager.getPlayer(player);
 
-        // TODO Remove the group from the player object
+        if (oPlayer.getGroup() == null)
+            return ChatUtil.sendConfigMessageRT(commandSender, "error.not-in-group");
 
-        return true;
+        if (oPlayer.getRole() == GroupRole.OWNER)
+            return ChatUtil.sendConfigMessageRT(commandSender, "error.cannot-leave-own-group");
+
+        String ownerName = oPlayer.getGroup().getCreator();
+        oPlayer.getGroup().removePlayer(player); // Remove player object from group
+        oPlayer.setGroup(null); // Remove group object from player
+
+        return ChatUtil.sendConfigMessageRT(commandSender, "success.left-group", ownerName);
     }
 
 }

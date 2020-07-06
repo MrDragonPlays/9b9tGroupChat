@@ -35,7 +35,7 @@ public class GroupDisbandCommand implements CommandExecutor {
 
         plugin.groupManager.removeGroup(group);
 
-        return true;
+        return ChatUtil.sendConfigMessageRT(player, "success.disbanded-group");
     }
 
 }

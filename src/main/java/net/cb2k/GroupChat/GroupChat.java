@@ -1,5 +1,6 @@
 package net.cb2k.GroupChat;
 
+import net.cb2k.GroupChat.commands.*;
 import net.cb2k.GroupChat.listeners.ChatListener;
 import net.cb2k.GroupChat.managers.DatabaseManager;
 import net.cb2k.GroupChat.managers.GroupManager;
@@ -35,6 +36,16 @@ public final class GroupChat extends JavaPlugin {
         databaseManager = new DatabaseManager();
 
         // Register commands
+        getCommand("gaccept").setExecutor(new GroupAcceptInviteCommand());
+        getCommand("gchat").setExecutor(new GroupChatCommand());
+        getCommand("gcreate").setExecutor(new GroupCreateCommand());
+        getCommand("gdisband").setExecutor(new GroupDisbandCommand());
+        getCommand("ginvite").setExecutor(new GroupInviteCommand());
+        getCommand("gkick").setExecutor(new GroupKickCommand());
+        getCommand("gleave").setExecutor(new GroupLeaveCommand());
+        getCommand("gmembers").setExecutor(new GroupMembersCommand());
+        getCommand("gspy").setExecutor(new GroupSpyCommand());
+
 
         // Register events
         getServer().getPluginManager().registerEvents(new ChatListener(), this);

@@ -26,7 +26,8 @@ public class DatabaseManager {
     public Group getGroup(UUID uniqueId) {
         // TODO Get set of members from database
         Set<OfflinePlayer> members = null;
-        return new Group(uniqueId, members);
+        Set<OfflinePlayer> invites = null;
+        return new Group(uniqueId, members, invites);
     }
 
     public void saveGroup(Group group) {
@@ -34,7 +35,7 @@ public class DatabaseManager {
     }
 
     public void savePlayer(OPlayer player) {
-        
+
     }
 
 }

@@ -15,11 +15,15 @@ public class ChatUtil {
     public static void sendConfigMessage(CommandSender sender, String path, String... placeholders) {
         if (!path.contains(".")) return;
         String prefix = plugin.getMessageConfig().getString(path.split("\\.")[0] + ".prefix");
-        String message = plugin.getMessageConfig().getString(path);
+        sendMessage(sender, prefix + replacePlaceHolders(plugin.getMessageConfig().getString(path), placeholders));
+    }
+
+    public static String replacePlaceHolders(String input, String... placeholders) {
+        String message = input;
         for (int i = 0; i < placeholders.length; i++) {
             message = message.replaceAll("\\{" + i + "}", placeholders[i]);
         }
-        sendMessage(sender, prefix + message);
+        return message;
     }
 
     public static boolean sendConfigMessageRT(CommandSender sender, String path, String... placeholders) {

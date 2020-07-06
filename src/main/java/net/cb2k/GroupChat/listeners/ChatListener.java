@@ -3,8 +3,8 @@ package net.cb2k.GroupChat.listeners;
 import net.cb2k.GroupChat.GroupChat;
 import net.cb2k.GroupChat.objects.Group;
 import net.cb2k.GroupChat.objects.OPlayer;
+import net.cb2k.GroupChat.util.ChatUtil;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -27,8 +27,7 @@ public class ChatListener implements Listener {
         Group group = player.getGroup();
         Set<Player> onlineMembers = group.getOnlineMembers();
         for (Player member : onlineMembers) {
-            // TODO get message from config, then replace placeholders
-            member.sendMessage(color("&1<" + player.getUsername() + ">&r " + event.getMessage()));
+            member.sendMessage(ChatUtil.color(ChatUtil.replacePlaceHolders(plugin.getConfig().getString("chat-formatting.standard"), player.getUsername(), event.getMessage(), group.getCreator())));
         }
 
         Set<Player> chatSpies = Bukkit.getOnlinePlayers().stream()
@@ -36,18 +35,13 @@ public class ChatListener implements Listener {
                 .filter(p -> p.hasPermission("groupchat.chatspy")) // Remove all players that do not have the permission
                 .map(p -> plugin.playerManager.getPlayer(p)) // Change Player into OPlayer object
                 .filter(OPlayer::isSpyToggled) // Filter if chat spy is on
-                .map(p -> p.getPlayer()) // Change OPlayer into Player object
+                .map(OPlayer::getPlayer) // Change OPlayer into Player object
                 .collect(Collectors.toSet());
 
         for (Player spy : chatSpies) {
-            // TODO get message from config, then replace placeholders
-            spy.sendMessage(color("&1GROUPSPY - <" + player.getUsername() + ">&r " + event.getMessage()));
+            spy.sendMessage(ChatUtil.color(ChatUtil.replacePlaceHolders(plugin.getConfig().getString("chat-formatting.spy"), player.getUsername(), event.getMessage(), group.getCreator())));
         }
 
-    }
-
-    private String color(String string) {
-        return ChatColor.translateAlternateColorCodes('&', string);
     }
 
 }

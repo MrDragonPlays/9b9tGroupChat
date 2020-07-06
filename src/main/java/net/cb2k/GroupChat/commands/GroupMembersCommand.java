@@ -26,8 +26,8 @@ public class GroupMembersCommand implements CommandExecutor {
             return ChatUtil.sendConfigMessageRT(commandSender, "error.not-in-group");
 
 
-        String onlineMembers = oPlayer.getGroup().getOnlineMembers(player).stream().map(Player::getName).collect(Collectors.joining(","));
-        String offlineMembers = oPlayer.getGroup().getOfflineMembers(player).stream().map(OfflinePlayer::getName).collect(Collectors.joining(","));
+        String onlineMembers = oPlayer.getGroup().getOnlineMembers(player).stream().map(Player::getName).collect(Collectors.joining(", "));
+        String offlineMembers = oPlayer.getGroup().getOfflineMembers(player).stream().map(OfflinePlayer::getName).collect(Collectors.joining(", "));
 
         player.sendMessage(ChatUtil.color("&b&lMembers for group &a" + oPlayer.getGroup().getCreator()));
         player.sendMessage(ChatUtil.color("&bOnline members: &6" + onlineMembers));
